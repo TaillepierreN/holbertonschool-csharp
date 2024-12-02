@@ -6,7 +6,12 @@ namespace _4_print_hexa
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int i = 0;
+            while (i <= 98)
+            {
+                Console.WriteLine($"{i} = 0x{i:x}\n");
+                i++;
+            }
         }
     }
 }
