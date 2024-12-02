@@ -1,12 +1,21 @@
 ﻿using System;
 
-namespace _11_print_diagonal
+class Line
 {
-    class Program
+    public static void PrintDiagonal(int length)
     {
-        static void Main(string[] args)
+        if (length < 0)
+            Console.WriteLine();
+        else
         {
-            Console.WriteLine("Hello World!");
+            string emptySpace = "";
+            for (int i = 0; i < length; i++)
+            {
+                Console.WriteLine(emptySpace + "\\");
+                emptySpace += " ";
+            }
+            Console.WriteLine();
         }
     }
 }
+
