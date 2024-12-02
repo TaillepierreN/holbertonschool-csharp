@@ -1,12 +1,10 @@
 ﻿using System;
 
-namespace _9_add
+class Number
 {
-    class Program
+    public static int Add(int a, int b)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+        return a + b;
     }
 }
+
