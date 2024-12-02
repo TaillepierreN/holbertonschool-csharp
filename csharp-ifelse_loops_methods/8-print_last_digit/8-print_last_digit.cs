@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Number
+public class Number
 {
     public static int PrintLastDigit(int number)
     {
@@ -8,6 +8,7 @@ class Number
         if (lastDigit < 0)
             lastDigit *= -1;
         Console.Write(lastDigit);
+
         return lastDigit;
     }
 }
