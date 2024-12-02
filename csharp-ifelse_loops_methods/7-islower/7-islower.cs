@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace _7_islower
+public class Character
 {
-    class Program
+    public static bool IsLower(char c)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+        return c >= 'a' && c <= 'z';
     }
 }
+
+
