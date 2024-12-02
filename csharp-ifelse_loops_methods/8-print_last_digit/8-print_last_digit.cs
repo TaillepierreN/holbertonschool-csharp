@@ -4,7 +4,9 @@ class Number
 {
     public static int PrintLastDigit(int number)
     {
-        return number % 10;
+        int lastDigit = Math.Abs(number % 10);
+        Console.Write(lastDigit);
+        return lastDigit;
     }
 }
 
