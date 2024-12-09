@@ -1,0 +1,1 @@
+hashest stack queue and linked list
