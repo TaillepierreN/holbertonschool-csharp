@@ -29,7 +29,7 @@ namespace MyMath
             }
             catch (DivideByZeroException)
             {
-                Console.WriteLine("Num cannot be zero");
+                Console.WriteLine("Num cannot be 0");
                 return null;
             }
             return newMatrix;
