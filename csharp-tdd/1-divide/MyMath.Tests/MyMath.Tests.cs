@@ -14,6 +14,7 @@ namespace MyMath.Tests
             int[,] expectedOutput = new int[,] {{1,2},{3,4}};
 
             int[,] result = Matrix.Divide(inputs, num);
+
             Assert.AreEqual(expectedOutput, result);
         }
 
@@ -22,7 +23,9 @@ namespace MyMath.Tests
         {
             int[,] inputs = new int[,] { { 2, 4}, { 6, 8}};
             int num = 0;
+
             int[,] result = Matrix.Divide(inputs, num);
+
             Assert.IsNull(result);
         }
 
@@ -30,6 +33,7 @@ namespace MyMath.Tests
         public void Divide_InputNull_ReturnNull()
         {
             int[,] result = Matrix.Divide(null, 2);
+
             Assert.IsNull(result);
         }
     }
