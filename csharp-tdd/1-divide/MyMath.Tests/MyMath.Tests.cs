@@ -7,7 +7,7 @@ namespace MyMath.Tests
     public class MatrixTests
     {
         [Test]
-        public void Divide_ValidInput_CorrectOutput()
+        public void Divide_ValidInput_ReturnCorrectOutput()
         {
             int[,] inputs = new int[,] { { 2, 4}, { 6, 8}};
             int num = 2;
@@ -35,6 +35,18 @@ namespace MyMath.Tests
             int[,] result = Matrix.Divide(null, 2);
 
             Assert.IsNull(result);
+        }
+
+        [Test]
+        public void Divide_InputNegative_ReturnCorrectOutput()
+        {
+            int[,] inputs = new int[,] { { 2, 4}, { 6, 8}};
+            int num = -2;
+            int[,] expectedOutput = new int[,] {{-1,-2},{-3,-4}};
+
+            int[,] result = Matrix.Divide(inputs, num);
+
+            Assert.AreEqual(expectedOutput, result);
         }
     }
 }
