@@ -2,7 +2,7 @@
 
 namespace Enemies
 {
-    class Zombie
+    public class Zombie
     {
     }
 }
