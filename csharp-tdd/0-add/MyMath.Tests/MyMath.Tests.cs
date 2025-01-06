@@ -1,18 +1,50 @@
 using NUnit.Framework;
+using System;
+using MyMath;
 
-namespace Tests
+namespace MyMath.Tests
 {
-    public class Tests
+    public class OperationsTests
     {
-        [SetUp]
-        public void Setup()
+
+        [Test]
+        public void AddCorrectly()
         {
+            int input = 1;
+
+            int result = Operations.Add(input, input);
+
+            Assert.AreEqual(2, result);
         }
 
         [Test]
-        public void Test1()
+        public void AddCorrectlyWithNegative()
         {
-            Assert.Pass();
+            int input = -1;
+
+            int result = Operations.Add(input, input);
+
+            Assert.AreEqual(-2, result);
+        }
+
+        [Test]
+        public void AddCorrectlyWithZero()
+        {
+            int input = 0;
+
+            int result = Operations.Add(input, input);
+
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void AddCorrectlyWithMaxValue()
+        {
+            int input = int.MaxValue;
+
+            int result = Operations.Add(input, input);
+
+            Assert.AreEqual(-2, result);
         }
     }
 }
