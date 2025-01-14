@@ -12,7 +12,7 @@ class Obj
     /// <returns>bool</returns>
     public static bool IsInstanceOfArray(object obj)
     {
-        return typeof(Array).IsInstanceOf(obj);
+        return typeof(Array).IsInstanceOfType(obj);
     }
 }
 
