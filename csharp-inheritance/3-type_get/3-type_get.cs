@@ -15,17 +15,12 @@ class Obj
         TypeInfo type = myObj.GetType().GetTypeInfo();
 
         Console.WriteLine(type.Name + " Properties:");
-        foreach (PropertyInfo prop in type.DeclaredProperties)
+        foreach (PropertyInfo prop in type.GetProperties())
             Console.WriteLine(prop.Name);
 
         Console.WriteLine(type.Name + " Methods:");
-        foreach (MethodInfo method in type.DeclaredMethods)
-            if (method.DeclaringType == type.AsType()
-                && !method.IsSpecialName
-                && !method.Name.StartsWith("System")
-                && !method.Name.StartsWith("get_")
-                && !method.Name.StartsWith("set_"))
-                Console.WriteLine(method.Name);
+        foreach (MethodInfo method in type.GetMethods())
+            Console.WriteLine(method.Name);
     }
 }
 
