@@ -15,4 +15,3 @@
             return obj is int;
         }
     }
-
