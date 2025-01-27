@@ -21,19 +21,19 @@ class MatrixMath
 
         double cosTheta = Math.Cos(angle);
         double sinTheta = Math.Sin(angle);
-        
+
         double[,] result = new double[matrixRows, matrixCols];
 
         for (int i = 0; i < matrixRows; i++)
         {
             for (int j = 0; j < matrixCols; j++)
             {
-                int newX = (int)(cosTheta * i - sinTheta * j);
-                int newY = (int)(sinTheta * i + cosTheta * j);
+                int newX = (int)Math.Round(cosTheta * (j - matrixCols / 2) - sinTheta * (i - matrixRows / 2) + matrixCols / 2);
+                int newY = (int)Math.Round(sinTheta * (j - matrixCols / 2) + cosTheta * (i - matrixRows / 2) + matrixRows / 2);
 
-                if (newX >= 0 && newX < matrixRows && newY >= 0 && newY < matrixCols)
+                if (newX >= 0 && newX < matrixCols && newY >= 0 && newY < matrixRows)
                 {
-                    result[newX, newY] = matrix[i, j];
+                    result[newY, newX] = matrix[i, j];
                 }
             }
         }
