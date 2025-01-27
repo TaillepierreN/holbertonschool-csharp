@@ -21,20 +21,22 @@ class MatrixMath
 
         double cosTheta = Math.Cos(angle);
         double sinTheta = Math.Sin(angle);
-        double[,] rotateMatrix = new double[,] { { cosTheta, -sinTheta }, { sinTheta, cosTheta } };
-
+        
         double[,] result = new double[matrixRows, matrixCols];
+
         for (int i = 0; i < matrixRows; i++)
-            for (int y = 0; y < matrixCols; y++)
+        {
+            for (int j = 0; j < matrixCols; j++)
             {
-                result[i, y] = 0;
-                for (int z = 0; z < 2; z++)
+                int newX = (int)(cosTheta * i - sinTheta * j);
+                int newY = (int)(sinTheta * i + cosTheta * j);
+
+                if (newX >= 0 && newX < matrixRows && newY >= 0 && newY < matrixCols)
                 {
-                    if (z < matrixRows && y < matrixCols)
-                        result[i, y] += matrix[i, z] * rotateMatrix[z, y];
+                    result[newX, newY] = matrix[i, j];
                 }
             }
+        }
         return result;
     }
 }
-
