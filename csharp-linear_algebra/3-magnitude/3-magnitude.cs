@@ -1,7 +1,15 @@
 ﻿using System;
 
+/// <summary>
+/// Class for vector math
+/// </summary>
 class VectorMath
 {
+    /// <summary>
+    /// Calculate the magnitude of a 2d or 3d vector.
+    /// </summary>
+    /// <param name="vector">double[] vector</param>
+    /// <returns>double</returns>
     public static double Magnitude(double[] vector)
     {
         if (vector.Length < 2 || vector.Length > 3)
