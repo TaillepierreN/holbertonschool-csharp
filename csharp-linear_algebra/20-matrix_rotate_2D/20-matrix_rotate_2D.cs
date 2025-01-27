@@ -16,21 +16,24 @@ class MatrixMath
         int matrixRows = matrix.GetLength(0);
         int matrixCols = matrix.GetLength(1);
 
-        if (matrixRows != matrixCols || matrixRows != 2)
-            return new double[,] {{-1}};
-        
+        if (matrixRows != matrixCols || matrixRows < 2)
+            return new double[,] { { -1 } };
+
         double cosTheta = Math.Cos(angle);
         double sinTheta = Math.Sin(angle);
-        double[,] rotateMatrix = new double[,]{{cosTheta, -sinTheta}, {sinTheta, cosTheta}};
+        double[,] rotateMatrix = new double[,] { { cosTheta, -sinTheta }, { sinTheta, cosTheta } };
 
         double[,] result = new double[matrixRows, matrixCols];
-            for (int i = 0; i < matrixRows; i++)
-                for (int y = 0; y < matrixCols; y++)
+        for (int i = 0; i < matrixRows; i++)
+            for (int y = 0; y < matrixCols; y++)
+            {
+                result[i, y] = 0;
+                for (int z = 0; z < 2; z++)
                 {
-                    result[i, y] = 0;
-                    for (int z = 0; z < 2; z++)
+                    if (z < matrixRows && y < matrixCols)
                         result[i, y] += matrix[i, z] * rotateMatrix[z, y];
                 }
+            }
         return result;
     }
 }
