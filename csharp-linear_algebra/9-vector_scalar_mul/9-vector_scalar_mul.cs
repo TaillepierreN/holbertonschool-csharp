@@ -19,7 +19,7 @@ class VectorMath
 
         for (int i = 0; i < vector.Length; i++)
             result[i] = vector[i] * scalar;
-        return result
+        return result;
     }
 }
 
