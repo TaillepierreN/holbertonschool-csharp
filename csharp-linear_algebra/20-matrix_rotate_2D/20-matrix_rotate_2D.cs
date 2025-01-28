@@ -13,25 +13,31 @@ class MatrixMath
     /// <returns></returns>
     public static double[,] Rotate2D(double[,] matrix, double angle)
     {
-        int matrixSize = matrix.GetLength(0);
+        if (matrix.GetLength(0) != 2 || matrix.GetLength(1) != 2)
+            return new double[,] { { -1 } };
 
-        if(matrixSize != matrix.GetLength(1))
-            return new double[,] {{-1}};
-
-        double[,] result = new double[matrixSize, matrixSize];
         double cosAngle = Math.Cos(angle);
         double sinAngle = Math.Sin(angle);
 
-        for (int i = 0; i < matrixSize; i++)
+        double[,] rotationMatrix = new double[,]
         {
-            for (int j = 0; j < matrixSize; j++)
-                result[i, j] = Math.Round(cosAngle * matrix[i, j] - sinAngle * matrix[i, (j + 1) % matrixSize], 2);
-        }
+            { cosAngle, -sinAngle },
+            { sinAngle, cosAngle }
+        };
 
-        for (int i = 0; i < matrixSize; i++)
+        double[,] result = new double[2, 2];
+
+        for (int i = 0; i < 2; i++)
         {
-            for (int j = 0; j < matrixSize; j++)
-                result[i, j] += Math.Round(sinAngle * matrix[(i + 1) % matrixSize, j] + cosAngle * matrix[i, j], 2);
+            for (int j = 0; j < 2; j++)
+            {
+                result[i, j] = 0;
+                for (int k = 0; k < 2; k++)
+                {
+                    result[i, j] += matrix[i, k] * rotationMatrix[k, j];
+                }
+                result[i, j] = Math.Round(result[i, j], 2);
+            }
         }
 
         return result;
