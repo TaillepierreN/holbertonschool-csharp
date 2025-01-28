@@ -5,6 +5,13 @@
 /// </summary>
 class MatrixMath
 {
+    /// <summary>
+    /// shear a 2d matrix given a direction and a factor
+    /// </summary>
+    /// <param name="matrix"></param>
+    /// <param name="direction"></param>
+    /// <param name="factor"></param>
+    /// <returns></returns>
     public static double[,] Shear2D(double[,] matrix, char direction, double factor)
     {
         int matrixRows = matrix.GetLength(0);
