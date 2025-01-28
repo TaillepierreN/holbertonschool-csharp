@@ -5,6 +5,11 @@
 /// </summary>
 class MatrixMath
 {
+    /// <summary>
+    /// Transpose a matrix
+    /// </summary>
+    /// <param name="matrix"></param>
+    /// <returns></returns>
     public static double[,] Transpose(double[,] matrix)
     {
         double[,] result = new double[matrix.GetLength(1), matrix.GetLength(0)];
