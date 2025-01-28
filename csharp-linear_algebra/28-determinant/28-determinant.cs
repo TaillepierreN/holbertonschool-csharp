@@ -5,6 +5,11 @@
 /// </summary>
 class MatrixMath
 {
+    /// <summary>
+    /// calculate the determinant of a matrix
+    /// </summary>
+    /// <param name="matrix"></param>
+    /// <returns></returns>
     public static double Determinant(double[,] matrix)
     {
         if (matrix == null || (matrix.GetLength(0) != 2 && matrix.GetLength(0) != 3))
