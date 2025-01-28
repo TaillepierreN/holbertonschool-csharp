@@ -19,7 +19,7 @@ class MatrixMath
 
         double[,] result = new double[2, 2];
         result[0, 0] = Math.Round((matrix[1, 1] / determinant), 2);
-        result[0, 1] = Math.Round((-matrix[0, 1] / determinant),)2;
+        result[0, 1] = Math.Round((-matrix[0, 1] / determinant), 2);
         result[1, 0] = Math.Round((-matrix[1, 0] / determinant), 2);
         result[1, 1] =  Math.Round((matrix[0, 0] / determinant),2);
 
