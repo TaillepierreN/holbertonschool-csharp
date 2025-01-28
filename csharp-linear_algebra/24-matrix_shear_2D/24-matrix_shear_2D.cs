@@ -18,9 +18,10 @@ class MatrixMath
         int matrixCols = matrix.GetLength(1);
 
         if (matrixRows != matrixCols || matrixRows != 2 || (direction != 'x' && direction != 'y'))
-            returnnew double[,] { { -1} };
+            return new double[,] { { -1} };
 
         double[,] result = new double[matrixRows, matrixCols];
+        
         for (int i = 0; i < matrixRows; i++)
         {
             for (int j = 0; j < matrixCols; j++)
