@@ -13,33 +13,23 @@ class MatrixMath
     /// <returns></returns>
     public static double[,] Rotate2D(double[,] matrix, double angle)
     {
-        if (matrix.GetLength(0) != 2 || matrix.GetLength(1) != 2)
+        double[,] result = new double[2, 2];
+        double[,] rotate = new double[2, 2] { { Math.Cos(angle), Math.Sin(angle) }, { -1 * Math.Sin(angle), Math.Cos(angle) } };
+        int matrixRows = matrix.GetLength(0);
+        int matrixCols = matrix.GetLength(1);
+
+        if (matrixRows != 2 || matrixCols != 2)
             return new double[,] { { -1 } };
 
-        double cosAngle = Math.Cos(angle);
-        double sinAngle = Math.Sin(angle);
-
-        double[,] rotationMatrix = new double[,]
+        for (int i = 0; i < matrixRows; i++)
         {
-            { cosAngle, -sinAngle },
-            { sinAngle, cosAngle }
-        };
-
-        double[,] result = new double[2, 2];
-
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < 2; j++)
+            for (int j = 0; j < matrixCols; j++)
             {
                 result[i, j] = 0;
                 for (int k = 0; k < 2; k++)
-                {
-                    result[i, j] += matrix[i, k] * rotationMatrix[k, j];
-                }
-                result[i, j] = Math.Round(result[i, j], 2);
+                    result[i, j] = Math.Round(result[i, j] + (matrix[i, k] * rotate[k, j]), 2);
             }
         }
-
         return result;
     }
 }
