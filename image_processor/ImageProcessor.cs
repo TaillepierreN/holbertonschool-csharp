@@ -91,5 +91,6 @@ class ImageProcessor
             }
 
         }
+        return grayscaleData;
     }
 }
