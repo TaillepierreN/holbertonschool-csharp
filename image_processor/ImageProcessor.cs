@@ -4,8 +4,15 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Processes images.
+/// </summary>
 class ImageProcessor
 {
+    /// <summary>
+    /// Inverts the colors of the images.
+    /// </summary>
+    /// <param name="filenames"></param>
     public static void Inverse(string[] filenames)
     {
         foreach (string filename in filenames)
@@ -26,7 +33,10 @@ class ImageProcessor
         }
     }
 
-    public byte[] InvertColors(byte[] imageData)
+    /// <summary>
+    /// Inverts the colors of the images asynchronously.
+    /// </summary>
+    private byte[] InvertColors(byte[] imageData)
     {
         byte[] invertedData = new byte[imageData.Length];
         for (int i = 0; i < imageData.Length / 4; i++)
