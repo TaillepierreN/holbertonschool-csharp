@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Threading.Tasks;
+
 
 /// <summary>
 /// Processes images.
@@ -48,5 +48,41 @@ class ImageProcessor
             invertedData[x + 3] ^= 0xFF;
         }
         return invertedData;
+    }
+
+    /// <summary>
+    /// Converts each image to grayscale.
+    /// </summary>
+    /// <param name="filenames"></param>
+    public static void Grayscale(string[] filenames)
+    {
+        foreach (string filename in filenames)
+        {
+            try
+            {
+                using (Bitmap originalBitmap = new Bitmap(filename))
+                {
+                    Bitmap grayscaleBitmap = new Bitmap(originalBitmap.Width, originalBitmap.Height);
+
+                    for (int y = 0; y < originalBitmap.Height; y++)
+                    {
+                        for (int x = 0; x < originalBitmap.Width; x++)
+                        {
+                            Color originalColor = originalBitmap.GetPixel(x, y);
+                            int grayValue = (int)(originalColor.R * 0.3 + originalColor.G * 0.59 + originalColor.B * 0.11);
+                            Color grayColor = Color.FromArgb(originalColor.A, grayValue, grayValue, grayValue);
+                            grayscaleBitmap.SetPixel(x, y, grayColor);
+                        }
+                    }
+
+                    string outputFilename = $"{Path.GetFileNameWithoutExtension(filename)}_grayscale{Path.GetExtension(filename)}";
+                    grayscaleBitmap.Save(outputFilename, ImageFormat.Png);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error processing {filename}: {ex.Message}");
+            }
+        }
     }
 }
