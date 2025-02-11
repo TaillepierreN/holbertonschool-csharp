@@ -85,4 +85,42 @@ class ImageProcessor
             }
         }
     }
+
+    /// <summary>
+    /// Converts each image to black and white.
+    /// </summary>
+    /// <param name="filenames"></param>
+    /// <param name="threshold"></param>
+    public static void BlackWhite(string[] filenames, double threshold)
+    {
+        foreach (string filename in filenames)
+        {
+            try
+            {
+                using (Bitmap originalBitmap = new Bitmap(filename))
+                {
+                    Bitmap blackWhiteBitmap = new Bitmap(originalBitmap.Width, originalBitmap.Height);
+
+                    for (int y = 0; y < originalBitmap.Height; y++)
+                    {
+                        for (int x = 0; x < originalBitmap.Width; x++)
+                        {
+                            Color originalColor = originalBitmap.GetPixel(x, y);
+                            double luminance = (originalColor.R * 0.3) + (originalColor.G * 0.59) + (originalColor.B * 0.11);
+                            Color bwColor = luminance >= threshold ? Color.FromArgb(originalColor.A, 255, 255, 255)
+                                                                    : Color.FromArgb(originalColor.A, 0, 0, 0);
+                            blackWhiteBitmap.SetPixel(x, y, bwColor);
+                        }
+                    }
+
+                    string outputFilename = $"{Path.GetFileNameWithoutExtension(filename)}_bw{Path.GetExtension(filename)}";
+                    blackWhiteBitmap.Save(outputFilename, ImageFormat.Png);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error processing {filename}: {ex.Message}");
+            }
+        }
+    }
 }
