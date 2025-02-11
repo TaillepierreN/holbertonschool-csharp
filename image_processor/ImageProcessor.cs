@@ -29,9 +29,13 @@ class ImageProcessor
     public byte[] InvertColors(byte[] imageData)
     {
         byte[] invertedData = new byte[imageData.Length];
-        for (int i = 0; i < imageData.Length; i++)
+        for (int i = 0; i < imageData.Length / 4; i++)
         {
-            invertedData[i] = (byte)(255 - imageData[i]);
+            int x = i * 4;
+            invertedData[x] ^= 0xFF;
+            invertedData[x + 1] ^= 0xFF;
+            invertedData[x + 2] ^= 0xFF;
+            invertedData[x + 3] ^= 0xFF;
         }
         return invertedData;
     }
