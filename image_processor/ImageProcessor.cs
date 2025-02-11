@@ -53,18 +53,17 @@ class ImageProcessor
     /// <summary>
     /// Converts each image to grayscale.
     /// </summary>
-    /// <param name="filenames"></param>
+    /// <param name="filenames">Array of image filenames to process.</param>
     public static void Grayscale(string[] filenames)
     {
         foreach (string filename in filenames)
         {
             try
             {
-                byte[] imageData = File.ReadAllBytes(filename);
-                using (MemoryStream memoryStream = new MemoryStream(imageData))
-                using (Bitmap originalBitmap = new Bitmap(memoryStream))
+                using (Bitmap originalBitmap = new Bitmap(filename))
                 {
                     Bitmap grayscaleBitmap = new Bitmap(originalBitmap.Width, originalBitmap.Height);
+
                     for (int y = 0; y < originalBitmap.Height; y++)
                     {
                         for (int x = 0; x < originalBitmap.Width; x++)
@@ -80,6 +79,10 @@ class ImageProcessor
                     grayscaleBitmap.Save(outputFilename, ImageFormat.Png);
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error processing {filename}: {ex.Message}");
+            }
+        }
     }
-
-    }
+}
