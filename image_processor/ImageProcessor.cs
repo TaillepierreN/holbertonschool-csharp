@@ -61,34 +61,25 @@ class ImageProcessor
             try
             {
                 byte[] imageData = File.ReadAllBytes(filename);
+                using (MemoryStream memoryStream = new MemoryStream(imageData))
+                using (Bitmap originalBitmap = new Bitmap(memoryStream))
+                {
+                    Bitmap grayscaleBitmap = new Bitmap(originalBitmap.Width, originalBitmap.Height);
+                    for (int y = 0; y < originalBitmap.Height; y++)
+                    {
+                        for (int x = 0; x < originalBitmap.Width; x++)
+                        {
+                            Color originalColor = originalBitmap.GetPixel(x, y);
+                            int grayValue = (int)(originalColor.R * 0.3 + originalColor.G * 0.59 + originalColor.B * 0.11);
+                            Color grayColor = Color.FromArgb(originalColor.A, grayValue, grayValue, grayValue);
+                            grayscaleBitmap.SetPixel(x, y, grayColor);
+                        }
+                    }
 
-                byte[] grayscaleData = ConvertToGrayscale(imageData);
-
-                string outputFilename = $"{GetFileNameWithoutExtension(filename)}_grayscale{GetFileExtension(filename)}";
-                File.WriteAllBytes(outputFilename, grayscaleData);
+                    string outputFilename = $"{Path.GetFileNameWithoutExtension(filename)}_grayscale{Path.GetExtension(filename)}";
+                    grayscaleBitmap.Save(outputFilename, ImageFormat.Png);
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error processing {filename}: {ex.Message}");
-            }
-        }
     }
 
-    private static byte[] ConvertToGrayscale(byte[] imageData)
-    {
-        byte[] grayscaleData = new byte[imageData.Length];
-        for (int i = 0; i < imageData.Length / 4; i++)
-        {
-            int x = i * 4;
-            byte r = imageData[x];
-            byte g = imageData[x + 1];
-            byte b = imageData[x + 2];
-            byte gray = (byte)(0.299 * r + 0.587 * g + 0.114 * b);
-            grayscaleData[x] = gray;
-            grayscaleData[x + 1] = gray;
-            grayscaleData[x + 2] = gray;
-            grayscaleData[x + 3] = imageData[x + 3];
-        }
-        return grayscaleData;
     }
-}
