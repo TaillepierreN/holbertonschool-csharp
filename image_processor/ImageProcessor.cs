@@ -13,7 +13,8 @@ class ImageProcessor
         {
             string filename = filenames[i];
 
-            tasks[i] = Task.Run(() =>{
+            tasks[i] = Task.Run(() =>
+            {
                 try
                 {
                     using (Bitmap bitmap = new Bitmap(filename))
@@ -33,6 +34,47 @@ class ImageProcessor
                         string invertedFilename = Path.Combine(directory, originalFilename + "_inverted" + extension);
 
                         bitmap.Save(invertedFilename);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error processing {0}: {1}", filename, ex.Message);
+                }
+            });
+        }
+        Task.WaitAll(tasks);
+    }
+
+    public static void Grayscale(string[] filenames)
+    {
+        Task[] tasks = new Task[filenames.Length];
+
+        for (int i = 0; i < filenames.Length; i++)
+        {
+            string filename = filenames[i];
+
+            tasks[i] = Task.Run(() =>
+            {
+                try
+                {
+                    using (Bitmap bitmap = new Bitmap(filename))
+                    {
+                        for (int y = 0; y < bitmap.Height; y++)
+                        {
+                            for (int x = 0; x < bitmap.Width; x++)
+                            {
+                                Color originalPixel = bitmap.GetPixel(x, y);
+                                int grayValue = (int)(0.3 * originalPixel.R + 0.59 * originalPixel.G + 0.11 * originalPixel.B);
+                                Color grayPixel = Color.FromArgb(grayValue, grayValue, grayValue);
+                                bitmap.SetPixel(x, y, grayPixel);
+                            }
+                        }
+                        string directory = Path.GetDirectoryName(filename);
+                        string originalFilename = Path.GetFileNameWithoutExtension(filename);
+                        string extension = Path.GetExtension(filename);
+                        string grayscaleFilename = Path.Combine(directory, originalFilename + "_grayscale" + extension);
+
+                        bitmap.Save(grayscaleFilename);
                     }
                 }
                 catch (Exception ex)
