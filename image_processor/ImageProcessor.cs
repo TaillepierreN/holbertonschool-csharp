@@ -76,19 +76,17 @@ class ImageProcessor
 
     private static byte[] ConvertToGrayscale(byte[] imageData)
     {
-        int rgbBytesPerPixel = 3;
-        int stride = imageData.Length / rgbBytesPerPixel;
+        int rgbaBytesPerPixel = 4;
         byte[] grayscaleData = new byte[imageData.Length];
 
-        for (int i = 0; i < imageData.Length; i += rgbBytesPerPixel)
+        for (int i = 0; i < imageData.Length; i += rgbaBytesPerPixel)
         {
-            if (i + rgbBytesPerPixel <= imageData.Length)
-            {
+
                 byte gray = (byte)(0.299 * imageData[i] + 0.587 * imageData[i + 1] + 0.114 * imageData[i + 2]);
                 grayscaleData[i] = gray;
                 grayscaleData[i + 1] = gray;
                 grayscaleData[i + 2] = gray;
-            }
+                grayscaleData[i + 3] = imageData[i + 3];
 
         }
         return grayscaleData;
