@@ -60,29 +60,36 @@ class ImageProcessor
         {
             try
             {
-                using (Bitmap originalBitmap = new Bitmap(filename))
-                {
-                    Bitmap grayscaleBitmap = new Bitmap(originalBitmap.Width, originalBitmap.Height);
+                byte[] imageData = File.ReadAllBytes(filename);
 
-                    for (int y = 0; y < originalBitmap.Height; y++)
-                    {
-                        for (int x = 0; x < originalBitmap.Width; x++)
-                        {
-                            Color originalColor = originalBitmap.GetPixel(x, y);
-                            int grayValue = (int)(originalColor.R * 0.3 + originalColor.G * 0.59 + originalColor.B * 0.11);
-                            Color grayColor = Color.FromArgb(originalColor.A, grayValue, grayValue, grayValue);
-                            grayscaleBitmap.SetPixel(x, y, grayColor);
-                        }
-                    }
+                byte[] grayscaleData = ConvertToGrayscale(imageData);
 
-                    string outputFilename = $"{Path.GetFileNameWithoutExtension(filename)}_grayscale{Path.GetExtension(filename)}";
-                    grayscaleBitmap.Save(outputFilename, ImageFormat.Png);
-                }
+                string outputFilename = $"{GetFileNameWithoutExtension(filename)}_grayscale{GetFileExtension(filename)}";
+                File.WriteAllBytes(outputFilename, grayscaleData);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error processing {filename}: {ex.Message}");
             }
+        }
+    }
+
+    private static byte[] ConvertToGrayscale(byte[] imageData)
+    {
+        int rgbBytesPerPixel = 3;
+        int stride = imageData.Length / rgbBytesPerPixel;
+        byte[] grayscaleData = new byte[imageData.Length];
+
+        for (int i = 0; i < imageData.Length; i += rgbBytesPerPixel)
+        {
+            if (i + rgbBytesPerPixel <= imageData.Length)
+            {
+                byte gray = (byte)(0.299 * imageData[i] + 0.587 * imageData[i + 1] + 0.114 * imageData[i + 2]);
+                grayscaleData[i] = gray;
+                grayscaleData[i + 1] = gray;
+                grayscaleData[i + 2] = gray;
+            }
+
         }
     }
 }
