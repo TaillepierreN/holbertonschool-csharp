@@ -36,7 +36,7 @@ class ImageProcessor
     /// <summary>
     /// Inverts the colors of the images asynchronously.
     /// </summary>
-    private byte[] InvertColors(byte[] imageData)
+    private static byte[] InvertColors(byte[] imageData)
     {
         byte[] invertedData = new byte[imageData.Length];
         for (int i = 0; i < imageData.Length / 4; i++)
