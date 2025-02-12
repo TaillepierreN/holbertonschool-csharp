@@ -60,24 +60,12 @@ class ImageProcessor
         {
             try
             {
-                using (Bitmap originalBitmap = new Bitmap(filename))
-                {
-                    Bitmap grayscaleBitmap = new Bitmap(originalBitmap.Width, originalBitmap.Height);
+                byte[] imageData = File.ReadAllBytes(filename);
 
-                    for (int y = 0; y < originalBitmap.Height; y++)
-                    {
-                        for (int x = 0; x < originalBitmap.Width; x++)
-                        {
-                            Color originalColor = originalBitmap.GetPixel(x, y);
-                            int grayValue = (int)(originalColor.R * 0.3 + originalColor.G * 0.59 + originalColor.B * 0.11);
-                            Color grayColor = Color.FromArgb(originalColor.A, grayValue, grayValue, grayValue);
-                            grayscaleBitmap.SetPixel(x, y, grayColor);
-                        }
-                    }
+                byte[] grayedData = GrayscaleColors(imageData);
 
-                    string outputFilename = $"{Path.GetFileNameWithoutExtension(filename)}_grayscale{Path.GetExtension(filename)}";
-                    grayscaleBitmap.Save(outputFilename, ImageFormat.Png);
-                }
+                string outputFilename = $"{Path.GetFileNameWithoutExtension(filename)}_grayscale{Path.GetExtension(filename)}";
+                File.WriteAllBytes(outputFilename, grayedData);
             }
             catch (Exception ex)
             {
@@ -85,6 +73,27 @@ class ImageProcessor
             }
         }
     }
+
+    /// <summary>
+    /// Converts the colors of the image to grayscale.
+    /// </summary>
+    /// <param name="imageData"></param>
+    private static byte[] GrayscaleColors(byte[] imageData)
+    {
+        byte[] grayedData = new byte[imageData.Length];
+        for (int i = 0; i < imageData.Length / 4; i++)
+        {
+            int x = i * 4;
+            int grayValue = (int)(0.3 * imageData[x] + 0.59 * imageData[x + 1] + 0.11 * imageData[x + 2]);
+
+            grayedData[x] = (byte)grayValue;
+            grayedData[x + 1] = (byte)grayValue;
+            grayedData[x + 2] = (byte)grayValue;
+            grayedData[x + 3] = imageData[x + 3];
+        }
+
+        return grayedData;
+    } 
 
     /// <summary>
     /// Converts each image to black and white.
