@@ -106,30 +106,34 @@ class ImageProcessor
         {
             try
             {
-                using (Bitmap originalBitmap = new Bitmap(filename))
-                {
-                    Bitmap blackWhiteBitmap = new Bitmap(originalBitmap.Width, originalBitmap.Height);
+                byte[] imageData = File.ReadAllBytes(filename);
 
-                    for (int y = 0; y < originalBitmap.Height; y++)
-                    {
-                        for (int x = 0; x < originalBitmap.Width; x++)
-                        {
-                            Color originalColor = originalBitmap.GetPixel(x, y);
-                            double luminance = (originalColor.R * 0.3) + (originalColor.G * 0.59) + (originalColor.B * 0.11);
-                            Color bwColor = luminance >= threshold ? Color.FromArgb(originalColor.A, 255, 255, 255)
-                                                                    : Color.FromArgb(originalColor.A, 0, 0, 0);
-                            blackWhiteBitmap.SetPixel(x, y, bwColor);
-                        }
-                    }
+                byte[] blackAndWhiteData = BlackWhiteColors(imageData, threshold);
 
-                    string outputFilename = $"{Path.GetFileNameWithoutExtension(filename)}_bw{Path.GetExtension(filename)}";
-                    blackWhiteBitmap.Save(outputFilename, ImageFormat.Png);
-                }
+                string outputFilename = $"{Path.GetFileNameWithoutExtension(filename)}_bw{Path.GetExtension(filename)}";
+                File.WriteAllBytes(outputFilename, blackAndWhiteData);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error processing {filename}: {ex.Message}");
             }
         }
+    }
+    private static byte[] BlackWhiteColors(byte[] imageData, double threshold)  
+    {
+        byte[] blackAndWhiteData = new byte[imageData.Length];
+        for (int i = 0; i < imageData.Length / 4; i++)
+        {
+            int x = i * 4;
+            double luminance = (double)(imageData[x] * 65536 + imageData[x + 1] * 256 + imageData[x + 2]);  
+            double modifiedColor = (luminance >= threshold) ? 255 : 0;
+
+            blackAndWhiteData[x] = (byte)modifiedColor;
+            blackAndWhiteData[x + 1] = (byte)modifiedColor;
+            blackAndWhiteData[x + 2] = (byte)modifiedColor;
+            blackAndWhiteData[x + 3] = imageData[x + 3];
+        }
+
+        return blackAndWhiteData;
     }
 }
