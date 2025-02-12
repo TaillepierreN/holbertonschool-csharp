@@ -119,6 +119,13 @@ class ImageProcessor
             }
         }
     }
+
+    /// <summary>
+    /// Converts the colors of the image to black and white.
+    /// </summary>
+    /// <param name="imageData"></param>
+    /// <param name="threshold"></param>
+    /// <returns></returns>
     private static byte[] BlackWhiteColors(byte[] imageData, double threshold)  
     {
         byte[] blackAndWhiteData = new byte[imageData.Length];
