@@ -64,17 +64,21 @@ class Queue<T>
     /// <summary>
     /// Remove the first node in the queue
     /// </summary>
-    public void Dequeue()
+    /// <returns>value of the removed node</returns>
+    public T Dequeue()
     {
+        T removedValue;
         if (head == null)
         {
             Console.Writeline("Queue is empty");
         }
         else
         {
+            removedValue = head.value;
             head = head.next;
             count--;
         }
+        return removedValue;
     }
 
     /// <summary>
