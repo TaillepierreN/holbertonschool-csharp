@@ -64,9 +64,9 @@ class Queue<T>
     /// <summary>
     /// Return the number of elements in the queue
     /// </summary>
-    public void Count()
+    public int Count()
     {
-        Console.WriteLine(count);
+        return count;
     }
 }
 
