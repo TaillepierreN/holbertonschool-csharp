@@ -41,19 +41,19 @@ class Rectangle : Shape
             height = value;
         }
     }
-/// <summary>
-/// Calculate the area of a rectangle.
-/// </summary>
-/// <returns></returns>
+    /// <summary>
+    /// Calculate the area of a rectangle.
+    /// </summary>
+    /// <returns></returns>
     public new int Area()
     {
         return width * height;
     }
 
-/// <summary>
-/// Return a string representation of the rectangle.
-/// </summary>
-/// <returns></returns>
+    /// <summary>
+    /// Return a string representation of the rectangle.
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return $"[Rectangle] {width} / {height}";
@@ -78,6 +78,10 @@ class Square : Rectangle
         }
     }
 
+    /// <summary>
+    /// Return a string representation of the square.
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return $"[Square] {size} / {size}";
