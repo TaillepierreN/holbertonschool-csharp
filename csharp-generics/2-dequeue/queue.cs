@@ -61,6 +61,9 @@ class Queue<T>
         count++;
     }
 
+    /// <summary>
+    /// Remove the first node in the queue
+    /// </summary>
     public void Dequeue()
     {
         if (head == null)
