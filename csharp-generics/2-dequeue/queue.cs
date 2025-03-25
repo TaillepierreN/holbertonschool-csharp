@@ -67,18 +67,22 @@ class Queue<T>
     /// <returns>value of the removed node</returns>
     public T Dequeue()
     {
-        T removedValue;
         if (head == null)
         {
             Console.Writeline("Queue is empty");
+            return default(T);
         }
         else
         {
-            removedValue = head.value;
+            T removedValue = head.value;
             head = head.next;
+            if (head == null)
+            {
+                tail = null;
+            }
             count--;
+            return removedValue;
         }
-        return removedValue;
     }
 
     /// <summary>
