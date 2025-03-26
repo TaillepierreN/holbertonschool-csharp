@@ -6,7 +6,7 @@
 abstract class Base
 {
     /// <summary>Name property</summary>
-    public string name = string.Empty;
+    public string name { get; set; }
 
     /// <summary>ToString override</summary>
     public override string ToString()
