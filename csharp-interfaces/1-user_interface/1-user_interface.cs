@@ -56,7 +56,7 @@ class TestObject : Base, IInteractive, IBreakable, ICollectable
 	/// </summary>
 	public void Interact()
 	{
-		///empty
+		/*empty*/
 	}
 
 	/// <summary>
@@ -64,7 +64,7 @@ class TestObject : Base, IInteractive, IBreakable, ICollectable
 	/// </summary>
 	public void Break()
 	{
-		///empty
+		/*empty*/
 	}
 
 	/// <summary>
@@ -72,7 +72,7 @@ class TestObject : Base, IInteractive, IBreakable, ICollectable
 	/// </summary>
 	public void Collect()
 	{
-		///empty
+		/*empty*/
 
 	}
 }
