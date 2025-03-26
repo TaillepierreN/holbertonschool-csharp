@@ -28,7 +28,7 @@ interface IInteractive
 /// </summary>
 interface IBreakable
 {
-	int Durability { get; set; }
+	int durability { get; set; }
 	void Break();
 }
 
@@ -47,7 +47,7 @@ interface ICollectable
 class TestObject : Base, IInteractive, IBreakable, ICollectable
 {
 	/// <summary>Durability property</summary>
-	public int Durability { get; set; }
+	public int durability { get; set; }
 	/// <summary>isCollected property</summary>
 	public bool isCollected { get; set; }
 
