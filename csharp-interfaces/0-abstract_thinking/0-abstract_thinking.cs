@@ -8,7 +8,7 @@ abstract class Base
 	/// <summary>
 	/// Name property
 	/// </summary>
-	public string name;
+	public string name {get; set;};
 
 	/// <summary>
 	/// ToString override
@@ -16,7 +16,7 @@ abstract class Base
 	/// <returns></returns>
 	public override string ToString()
 	{
-		return $"{name} is a {GetType()}";
+		return $"{name} is a {GetType().Name}";
 	}
 }
 
