@@ -71,7 +71,7 @@ class Decoration : Base, IInteractive, IBreakable
 	/// <summary>isQuestItem property</summary>
 	public bool isQuestItem { get; set; }
 	/// <summary>durability property</summary>
-	int durability { get; set; }
+	public int durability { get; set; }
 
 	/// <summary>
 	/// Constructor
