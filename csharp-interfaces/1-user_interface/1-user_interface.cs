@@ -29,7 +29,7 @@ interface IBreakable
 interface ICollectable
 {
 	bool isCollected { get; set; }
-	void Collect;
+	void Collect();
 }
 
 class TestObject : Base, IInteractive, IBreakable, ICollectable
