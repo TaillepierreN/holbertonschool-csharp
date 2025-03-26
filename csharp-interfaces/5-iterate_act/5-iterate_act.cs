@@ -146,8 +146,17 @@ class Key : Base, ICollectable
 	}
 }
 
+
+/// <summary>
+/// RoomObjects class
+/// </summary>
 class RoomObjects
 {
+	/// <summary>
+	/// IterateAction method
+	/// </summary>
+	/// <param name="roomObjects"></param>
+	/// <param name="type"></param>
 	public static void IterateAction(List<Base> roomObjects, Type type)
 	{
 		foreach (Base obj in roomObjects)
