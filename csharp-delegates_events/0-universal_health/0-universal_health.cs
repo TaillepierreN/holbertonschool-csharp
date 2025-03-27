@@ -22,7 +22,7 @@ class Player
 		this.name = name;
 		if (maxHp <= 0)
 		{
-			this.maxHp = 100f
+			this.maxHp = 100f;
 			Console.WriteLine("maxHp must be greater than 0. maxHp set to 100f by default.");
 		}
 		else
