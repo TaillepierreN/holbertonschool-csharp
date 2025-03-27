@@ -39,6 +39,7 @@ class Player
 	/// <summary> CalculateHealth delegate</summary>
 	public delegate void CalculateHealth(float amount);
 
+	/// <summary> HPCheck event</summary>
 	public event EventHandler<CurrentHPArgs> HPCheck;
 
 	/// <summary>
@@ -63,6 +64,7 @@ class Player
 		HPCheck += CheckStatus;
 	}
 
+	/* Check status method */
 	private void CheckStatus(object sender, CurrentHPArgs e)
 	{
 		switch (e.currentHp)
@@ -160,10 +162,18 @@ class Player
 	}
 }
 
+/// <summary>
+/// CurrentHPArgs class
+/// </summary>
 class CurrentHPArgs : EventArgs
 {
+	/// <summary>current hp</summary>
 	public readonly float currentHp;
 
+	/// <summary>
+	/// CurrentHPArgs constructor
+	/// </summary>
+	/// <param name="newHp"></param>
 	public CurrentHPArgs(float newHp)
 	{
 		this.currentHp = newHp;
