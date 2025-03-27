@@ -76,7 +76,7 @@ class Player
 			case float health when health < 0:
 				hp = 0;
 				break;
-			case float health when health > maxHp;
+			case float health when health > maxHp:
 				hp = maxHp;
 				break;
 			default:
