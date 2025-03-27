@@ -85,6 +85,7 @@ class Player
 				status = $"{name} is knocked out!";
 				break;
 			default:
+				break;
 		}
 		Console.WriteLine(status);
 	}
