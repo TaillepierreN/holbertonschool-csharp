@@ -3,18 +3,18 @@
 
 public class Item : BaseClass
 {
-    public string name { get; set; };
+    public string name { get; set; }
 
-    public string? description { get; set; };
+    public string? description { get; set; }
 
-    private float? _price { get; set; };
+    private float? _price { get; set; }
     public float? price
     {
         get => _price;
         set => _price = (float)Math.Round(value, 2);
     }
 
-    public List<string>? tags { get; set; };
+    public List<string>? tags { get; set; }
 
     public Item(string name)
     {
