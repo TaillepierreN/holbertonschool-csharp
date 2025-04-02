@@ -1,16 +1,20 @@
 ﻿using System;
 
-
-public class User : BaseClass
+namespace InventoryLibrary
 {
-    public string name { get; set; }
-
-    public User(string name)
+    public class User : BaseClass
     {
-        if (string.IsNullOrWhiteSpace(name))
-            throw new ArgumentException("Name is required.", nameof(name));
+        public string name { get; set; }
 
-        this.name = name;
+        public User() { }
+
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Name is required.", nameof(name));
+
+            this.name = name;
+        }
     }
-}
 
+}

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryLibrary", "InventoryLibrary\InventoryLibrary.csproj", "{C5748D0F-7FBD-4FEE-9386-215ED3671901}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager", "InventoryManager\InventoryManager.csproj", "{C945B429-7070-4DBE-82C2-BDDC95E9A864}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{C5748D0F-7FBD-4FEE-9386-215ED3671901}.Release|x64.Build.0 = Release|Any CPU
 		{C5748D0F-7FBD-4FEE-9386-215ED3671901}.Release|x86.ActiveCfg = Release|Any CPU
 		{C5748D0F-7FBD-4FEE-9386-215ED3671901}.Release|x86.Build.0 = Release|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Debug|x64.Build.0 = Debug|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Debug|x86.Build.0 = Debug|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Release|x64.ActiveCfg = Release|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Release|x64.Build.0 = Release|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Release|x86.ActiveCfg = Release|Any CPU
+		{C945B429-7070-4DBE-82C2-BDDC95E9A864}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

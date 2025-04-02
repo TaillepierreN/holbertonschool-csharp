@@ -1,28 +1,31 @@
 ﻿using System;
 
-
-public class Inventory : BaseClass
+namespace InventoryLibrary
 {
-    public string user_id { get; set; }
-    public string item_id { get; set; }
-    private int _quantity;
-    public int quantity
+    public class Inventory : BaseClass
     {
-        get => _quantity;
-        set
+        public string user_id { get; set; }
+        public string item_id { get; set; }
+        private int _quantity;
+        public int quantity
         {
-            if (value < 0)
+            get => _quantity;
+            set
             {
-                throw new ArgumentException("can not be negative");
+                if (value < 0)
+                {
+                    throw new ArgumentException("can not be negative");
+                }
+                _quantity = value;
             }
-            _quantity = value;
+        }
+        public Inventory() {}
+
+        public Inventory(string UserId, string ItemId, int Quantity = 1)
+        {
+            this.user_id = UserId;
+            this.item_id = ItemId;
+            this.quantity = Quantity;
         }
     }
-    public Inventory(string UserId, string ItemId, int Quantity = 1)
-    {
-        this.user_id = UserId;
-        this.item_id = ItemId;
-        this.quantity = Quantity;
-    }
 }
-

@@ -1,29 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
-public class Item : BaseClass
+namespace InventoryLibrary
 {
-    public string name { get; set; }
-
-    public string description { get; set; }
-
-    private float _price { get; set; }
-    public float price
+    public class Item : BaseClass
     {
-        get => _price;
-        set => _price = (float)Math.Round(value, 2);
-    }
+        public string name { get; set; }
 
-    public List<string> tags { get; set; }
+        public string description { get; set; }
 
-    public Item(string name)
-    {
-        if (string.IsNullOrWhiteSpace(name))
-            throw new ArgumentException("Name is required.", nameof(name));
+        public float price { get; set; }
 
-        this.name = name;
-        this.tags = new List<string>();
+        public List<string> tags { get; set; }
+
+        public Item()
+        {
+            name = "";
+            description = "";
+            price = 0;
+            tags = new List<string>();
+        }
+
+        public Item(string name) : this()
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Name is required.", nameof(name));
+
+            this.name = name;
+        }
     }
 }
-
