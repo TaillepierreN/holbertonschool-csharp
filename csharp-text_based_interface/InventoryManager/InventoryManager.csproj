@@ -6,10 +6,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <LangVersion>7.3</LangVersion>
-    <Nullable>disable</Nullable>
-    <ImplicitUsings>false</ImplicitUsings>
+    <TargetFramework>net6.0</TargetFramework>
+      <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
 
 </Project>
