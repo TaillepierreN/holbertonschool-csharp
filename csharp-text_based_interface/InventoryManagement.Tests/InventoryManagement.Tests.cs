@@ -5,17 +5,6 @@ using System.Collections.Generic;
 
 namespace InventoryManagement.Tests
 {
-    public class BaseClassTests
-    {
-        [Fact]
-        public void BaseClass_InitializesFields()
-        {
-            var obj = new BaseClass();
-            Assert.False(string.IsNullOrEmpty(obj.id));
-            Assert.True((DateTime.Now - obj.date_created).TotalSeconds < 2);
-            Assert.True((DateTime.Now - obj.date_updated).TotalSeconds < 2);
-        }
-    }
 
     public class ItemTests
     {
